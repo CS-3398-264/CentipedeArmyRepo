@@ -5,6 +5,10 @@ package pieces;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import gameloop.Board;
 
@@ -23,13 +27,15 @@ public abstract class Piece
 	/**
 	 * Instantiate a new Piece on a specific board position
 	 */
-	public Piece(Board board, int x, int y)
+	public Piece(Board board, int x, int y, int color)
 	{
 		possibleMoves = new boolean[8][8];
 		this.board = board;
 		
 		posX = x;
 		posY = y;
+		
+		pieceColor = color;
 	}
 	
 	/**
@@ -74,10 +80,88 @@ public abstract class Piece
 	/**
 	 * Draws Piece to the screen based off of its board location
 	 * @param g
+	 * @throws IOException 
 	 */
-	public void render(Graphics2D g)
+	public void render(Graphics2D g) throws IOException
 	{
-		//TODO
-	}
+	
+		BufferedImage img;
+		switch(this.getClass().getName())
+		{
+		case ("pieces.Bishop"):
+			if(pieceColor == 0)
+			{
+				img = ImageIO.read(new File("src\\pieces\\BB.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			else
+			{
+				img = ImageIO.read(new File("src\\pieces\\WB.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			break;
+		case ("pieces.King"):
+			if(pieceColor == 0)
+			{
+				img = ImageIO.read(new File("src\\pieces\\BK.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			else
+			{
+				img = ImageIO.read(new File("src\\pieces\\WK.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			break;
+		case ("pieces.Knight"):
+			if(pieceColor == 0)
+			{
+				img = ImageIO.read(new File("src\\pieces\\BN.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			else
+			{
+				img = ImageIO.read(new File("src\\pieces\\WN.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			break;
+		case ("pieces.Pawn"):
+			if(pieceColor == 0)
+			{
+				img = ImageIO.read(new File("src\\pieces\\BP.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			else
+			{
+				img = ImageIO.read(new File("src\\pieces\\WP.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			break;
+		case ("pieces.Queen"):
+			if(pieceColor == 0)
+			{
+				img = ImageIO.read(new File("src\\pieces\\BR.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			else
+			{
+				img = ImageIO.read(new File("src\\pieces\\WR.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			break;
+		case ("pieces.Rook"):
+			if(pieceColor == 0)
+			{
+				img = ImageIO.read(new File("src\\pieces\\BR.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+			else
+			{
+				img = ImageIO.read(new File("src\\pieces\\WR.png"));
+				g.drawImage(img, posX*60, posY*60, null);
+			}
+		    
+			break;
 
+		}
+	}
 }

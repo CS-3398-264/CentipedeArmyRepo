@@ -4,8 +4,9 @@
 package users;
 
 import gameloop.Board;
+import pieces.Piece;
 
-public class AI
+public class AI implements User
 {
 	Board board;
 	
@@ -23,6 +24,12 @@ public class AI
 	 */
 	public void calculateMove()
 	{
+		
+	}
+
+	@Override
+	public void makeMove(Piece p, int x, int y) {
+		// TODO Auto-generated method stub
 		
 	}
 

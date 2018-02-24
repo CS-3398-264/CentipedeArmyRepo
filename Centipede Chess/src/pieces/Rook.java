@@ -11,9 +11,9 @@ public class Rook extends Piece
 	/**
 	 * Instantiate a new Rook on a specific board position
 	 */
-	public Rook(Board board, int xIndex, int yIndex)
+	public Rook(Board board, int xIndex, int yIndex, int color)
 	{
-		super(board, xIndex, yIndex);
+		super(board, xIndex, yIndex, color);
 	}
 
 	/* (non-Javadoc)

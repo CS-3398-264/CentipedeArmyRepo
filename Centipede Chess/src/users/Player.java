@@ -6,7 +6,7 @@ package users;
 import gameloop.Board;
 import pieces.Piece;
 
-public class Player
+public class Player implements User
 {
 	Piece selectedPiece;
 	Board board;
@@ -25,6 +25,12 @@ public class Player
 	 */
 	public void checkInput()
 	{
+		
+	}
+
+	@Override
+	public void makeMove(Piece p, int x, int y) {
+		// TODO Auto-generated method stub
 		
 	}
 }

@@ -12,9 +12,9 @@ public class Pawn extends Piece
 	/**
 	 * Instantiate a new Pawn on a specific board position
 	 */
-	public Pawn(Board board, int xIndex, int yIndex)
+	public Pawn(Board board, int xIndex, int yIndex, int color)
 	{
-		super(board, xIndex, yIndex);
+		super(board, xIndex, yIndex, color);
 	}
 
 	/* (non-Javadoc)
