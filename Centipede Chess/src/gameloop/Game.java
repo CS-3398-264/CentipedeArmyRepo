@@ -3,27 +3,25 @@
  */
 package gameloop;
 
-public class Game implements Runnable
+public class Game
 {
-	boolean isRunning;
-	Thread loopThread;
-	Display display;
+	private static boolean isRunning;
+	private static Display display;
 	
 	/**
-	 * Creates new Game object in order to avoid statics
+	 * Begins the program by passing off control to the start -> run() method
 	 * @param args
 	 */
 	public static void main(String args[])
 	{
-		Game game = new Game();
-		game.start();
+		start();
 	}
 	
 	/**
 	 * Initiates Display
-	 * Starts GameLoop thread in order to take advantage of Runnable
+	 * Starts GameLoop
 	 */
-	public void start()
+	public static void start()
 	{
 		display = new Display();
 		
@@ -31,8 +29,7 @@ public class Game implements Runnable
 			return;
 		isRunning = true;
 		
-		loopThread = new Thread(this);
-		loopThread.start();
+		run();
 	}
 
 	/**
@@ -41,7 +38,7 @@ public class Game implements Runnable
 	 * 
 	 * Algorithm will also be used to create timers
 	 */
-	public void run()
+	public static void run()
 	{
 		long lastTime = System.nanoTime();
 		double nsPerTick = 1000000000D / 60D;
