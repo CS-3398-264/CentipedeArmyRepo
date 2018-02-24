@@ -11,9 +11,9 @@ public class Knight extends Piece
 	/**
 	 * Instantiate a new Knight on a specific board position
 	 */
-	public Knight(Board board, int xIndex, int yIndex)
+	public Knight(Board board, int xIndex, int yIndex, int color)
 	{
-		super(board, xIndex, yIndex);
+		super(board, xIndex, yIndex, color);
 	}
 
 	/* (non-Javadoc)

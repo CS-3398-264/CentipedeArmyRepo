@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import gamestates.PlayState;
 import input.InputManager;
 
 public class Display extends Canvas
@@ -22,6 +23,8 @@ public class Display extends Canvas
 	
 	private InputManager listener;
 	private JFrame frame;
+	
+	private PlayState playstate;
 	
 	private int width, height;
 	
@@ -37,9 +40,12 @@ public class Display extends Canvas
 	public Display()
 	{
 		listener = new InputManager();
-		currentState = 0;
+		currentState = 1;//should be 0
 		width = 800;
 		height = 600;
+		
+		playstate = new PlayState();
+		playstate.init();
 		
 		this.addMouseListener(listener);
 		createWindow();
@@ -85,8 +91,17 @@ public class Display extends Canvas
 		
 		g = (Graphics2D) bs.getDrawGraphics();
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, height);
+		if(currentState == 0)
+		{
+			
+		}
+		else
+		{
+			playstate.render(g);
+		}
+		
+		//g.setColor(Color.BLACK);
+		//g.fillRect(0, 0, width, height);
 		
 		g.dispose();
 		bs.show();

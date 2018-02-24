@@ -5,6 +5,7 @@ package gamestates;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import gameloop.Board;
 
@@ -19,6 +20,7 @@ public class PlayState implements GameState
 	public PlayState()
 	{
 		playButtons = new Rectangle[0];
+		board = new Board(0);
 	}
 
 	/* (non-Javadoc)
@@ -45,7 +47,12 @@ public class PlayState implements GameState
 	@Override
 	public void render(Graphics2D g)
 	{
-		
+		try {
+			board.render(g);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/* (non-Javadoc)
