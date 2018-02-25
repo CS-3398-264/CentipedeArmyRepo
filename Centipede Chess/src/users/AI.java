@@ -8,15 +8,29 @@ import pieces.Piece;
 
 public class AI implements User
 {
-	Board board;
+	Board board; 
+	boolean myTurn = false;
 	
 	/**
 	 * Initiates new AI to calculate moves and update the board based off calculation
 	 * @param board
 	 */
-	public AI()
+	public AI(boolean turn)
 	{
-		
+		this.myTurn = turn;
+	}
+	
+	/**
+	 * Sets who has the next turn
+	 */
+	public void setNextTurn(boolean turn)
+	{
+		this.myTurn = turn;
+	}
+	
+	public boolean hasMoved()
+	{
+		return myTurn;
 	}
 	
 	/**

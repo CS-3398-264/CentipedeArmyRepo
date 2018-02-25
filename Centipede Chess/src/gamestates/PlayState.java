@@ -20,7 +20,7 @@ public class PlayState implements GameState
 	public PlayState()
 	{
 		playButtons = new Rectangle[0];
-		board = new Board(0);
+		board = new Board(2);
 	}
 
 	/* (non-Javadoc)
@@ -36,9 +36,9 @@ public class PlayState implements GameState
 	 * @see gamestates.GameState#update()
 	 */
 	@Override
-	public void update()
+	public void update(int x, int y)
 	{
-		
+		board.updateBoard(x, y);
 	}
 
 	/* (non-Javadoc)
@@ -69,6 +69,12 @@ public class PlayState implements GameState
 	 */
 	public void updateBoard()
 	{
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 

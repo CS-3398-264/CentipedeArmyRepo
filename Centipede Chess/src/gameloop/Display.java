@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import gamestates.MenuState;
 import gamestates.PlayState;
 import input.InputManager;
 
@@ -25,6 +26,7 @@ public class Display extends Canvas
 	private JFrame frame;
 	
 	private PlayState playstate;
+	private MenuState menustate;
 	
 	private int width, height;
 	
@@ -46,6 +48,8 @@ public class Display extends Canvas
 		
 		playstate = new PlayState();
 		playstate.init();
+		menustate = new MenuState();
+		menustate.init();
 		
 		this.addMouseListener(listener);
 		createWindow();
@@ -75,7 +79,20 @@ public class Display extends Canvas
 	 */
 	public void update()
 	{
-		
+		if(currentState == 0)
+		{
+			menustate.update();
+		}
+		else
+		{
+			if(listener.isClicking())
+			{
+				listener.setClicking(false);
+				int x = listener.getMousePosition().x;
+				int y = listener.getMousePosition().y;
+				playstate.update(x/60, y/60);
+			}
+		}
 	}
 	
 	/**
@@ -93,15 +110,12 @@ public class Display extends Canvas
 		
 		if(currentState == 0)
 		{
-			
+			menustate.render(g);
 		}
 		else
 		{
 			playstate.render(g);
 		}
-		
-		//g.setColor(Color.BLACK);
-		//g.fillRect(0, 0, width, height);
 		
 		g.dispose();
 		bs.show();

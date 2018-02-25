@@ -32,4 +32,6 @@ public interface GameState
 	 * @param rect
 	 */
 	public void isClickingButton(Rectangle rect);
+
+	void update(int x, int y);
 }

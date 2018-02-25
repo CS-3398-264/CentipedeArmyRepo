@@ -44,7 +44,7 @@ public class Game
 		double nsPerTick = 1000000000D / 60D;
 		
 		long lastTimer = System.currentTimeMillis();
-		double delta = 0;
+		double delta = 0; 
 
 		while(isRunning)
 		{

@@ -9,13 +9,15 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 
 import pieces.Piece;
+import users.AI;
+import users.Player;
 import users.User;
 
 public class Board
 {
 	Piece board[][];
 	User player1, player2;
-	
+	boolean possibleMoves[][];
 	/**
 	 * 0 = Black | 1 = White
 	 */
@@ -30,7 +32,28 @@ public class Board
 	{
 		this.gameType = gameType;
 		board = new Piece[8][8];
+		possibleMoves = new boolean[8][8];
 		initBoard();
+	}
+
+	public void moveTo(Piece piece, int x, int y, int fromX, int fromY)
+	{
+		board[x][y] = piece;
+		board[fromX][fromY] = null;
+		clearPossibleMoves();
+	}
+	
+	public void setPossibleMoves(boolean possibleMoves[][])
+	{
+		this.possibleMoves = possibleMoves;
+	}
+	public void clearPossibleMoves()
+	{
+		for(int i = 0; i < 8; i++)
+			for(int j = 0; j < 8; j++)
+			{
+				possibleMoves[i][j] = false;
+			}
 	}
 	
 	/**
@@ -66,27 +89,61 @@ public class Board
 		}
 		
 		
-		if(gameType == 1)
+		if(gameType == 0)
 		{
-			
+			player1 = new AI(true);
+			player2 = new AI(false);
 		}
-		else if(gameType == 2)
+		else if(gameType == 1)
 		{
-			
+			player1 = new Player(this, true);
+			player2 = new AI(false);
 		}
 		else
 		{
-			
+			player1 = new Player(this, true);
+			player2 = new Player(this, false);
 		}
+		currentPlayerTurn = 0;
 	}
 	
 	/**
 	 * Goes through the current users and updates pieces based
 	 * off of their values
 	 */
-	public void updateBoard()
+	public void updateBoard(int x, int y)
 	{
 		
+		if(currentPlayerTurn == 0)
+		{
+			if(player1.getClass().toString().equals("class users.Player"))
+			{
+				((Player) player1).checkInput(x, y); 
+			}
+			else if(player1.getClass().equals("class users.AI"))
+			{
+				((AI) player1).calculateMove();
+			}
+			if(!player1.hasMoved())
+			{
+				currentPlayerTurn = 1;
+			}
+		}
+		else
+		{
+			if(player2.getClass().equals("class users.Player"))
+			{
+				((Player) player2).checkInput(x, y);
+			}
+			else if(player2.getClass().equals("class users.AI"))
+			{
+				((AI) player2).calculateMove();
+			}
+			if(!player2.hasMoved())
+			{
+				currentPlayerTurn = 0;
+			}
+		}
 	}
 	
 	/**
@@ -102,11 +159,17 @@ public class Board
 			{
 				if((i + j)%2 == 1)
 				{
-					g.setColor(new Color(102, 51, 0));
+					if(possibleMoves[i][j])
+						g.setColor(new Color(200, 200, 0));//dark yellow
+					else
+						g.setColor(new Color(102, 51, 0));//brown
 				}
 				else
 				{
-					g.setColor(new Color(255, 255, 204));
+					if(possibleMoves[i][j])
+						g.setColor(new Color(240, 240, 0));//yellow
+					else
+						g.setColor(new Color(255, 255, 204));//tan
 				}
 				g.fillRect(i * square, j * square, square, square);
 				if(this.returnPiece(i, j) != null)
@@ -124,6 +187,8 @@ public class Board
 	 */
 	public Piece returnPiece(int x, int y)
 	{
+		if(x < 0 || x >= 8 || y < 0 || y > 8)
+			return null;
 		return board[x][y];
 	}
 }

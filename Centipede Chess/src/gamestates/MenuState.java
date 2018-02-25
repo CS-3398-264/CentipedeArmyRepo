@@ -22,7 +22,7 @@ public class MenuState implements GameState
 
 	/* (non-Javadoc)
 	 * @see gamestates.GameState#init()
-	 */
+	 */ 
 	@Override
 	public void init()
 	{
@@ -63,6 +63,12 @@ public class MenuState implements GameState
 	 */
 	public void beginGame()
 	{
+		
+	}
+
+	@Override
+	public void update(int x, int y) {
+		// TODO Auto-generated method stub
 		
 	}
 
