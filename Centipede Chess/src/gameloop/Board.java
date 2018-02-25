@@ -127,11 +127,12 @@ public class Board
 			if(!player1.hasMoved())
 			{
 				currentPlayerTurn = 1;
+				player2.setNextTurn(true);
 			}
 		}
 		else
 		{
-			if(player2.getClass().equals("class users.Player"))
+			if(player2.getClass().toString().equals("class users.Player"))
 			{
 				((Player) player2).checkInput(x, y);
 			}
@@ -142,6 +143,7 @@ public class Board
 			if(!player2.hasMoved())
 			{
 				currentPlayerTurn = 0;
+				player1.setNextTurn(true);
 			}
 		}
 	}

@@ -37,6 +37,12 @@ public abstract class Piece
 		
 		pieceColor = color;
 	}
+	
+	public int getColor()
+	{
+		return pieceColor;
+	}
+	
 	/**
 	 * Returns possible moves
 	 * @return boolean matrix

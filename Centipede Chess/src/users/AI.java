@@ -8,6 +8,7 @@ import pieces.Piece;
 
 public class AI implements User
 {
+	int myColor;
 	Board board; 
 	boolean myTurn = false;
 	
@@ -18,6 +19,10 @@ public class AI implements User
 	public AI(boolean turn)
 	{
 		this.myTurn = turn;
+		if(this.myTurn)
+		{
+			int myColor = 1;
+		}
 	}
 	
 	/**

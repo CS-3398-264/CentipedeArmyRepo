@@ -8,6 +8,7 @@ import pieces.Piece;
 
 public class Player implements User
 {
+	int myColor;
 	Piece selectedPiece;
 	Board board;
 	boolean myTurn = false; 
@@ -20,6 +21,14 @@ public class Player implements User
 	{
 		this.myTurn = turn;
 		this.board = board;
+		if(this.myTurn)
+		{
+			myColor = 1;//white
+		}
+		else
+		{
+			myColor = 0;//black
+		}
 	}
 	
 	public void setNextTurn(boolean turn)
@@ -38,14 +47,16 @@ public class Player implements User
 	public void checkInput(int x, int y)
 	{
 		Piece piece = board.returnPiece(x, y);
-		if(selectedPiece != null)
+		if(selectedPiece != null && selectedPiece.getColor() == this.myColor)
+		{
 			if(selectedPiece.getPossibleMoves()[x][y])
 			{
 				makeMove(selectedPiece, x, y);
 				if(selectedPiece.getClass().getName().equals("pieces.Pawn"))
 					selectedPiece.setMoved();
 			}
-		if(piece != null)
+		}
+		if(piece != null && piece.getColor() == this.myColor)
 		{
 			selectedPiece = board.returnPiece(x, y);
 			selectedPiece.updatePossibleMoves();
@@ -59,8 +70,7 @@ public class Player implements User
 
 	@Override
 	public void makeMove(Piece p, int x, int y) {
-		
-		board = p.moveTo(x, y);
 		myTurn = false;
+		board = p.moveTo(x, y);
 	}
 }
