@@ -8,6 +8,8 @@ public class Game
 	private static boolean isRunning;
 	private static Display display;
 	
+	private static int timer;
+	
 	/**
 	 * Begins the program by passing off control to the start -> run() method
 	 * @param args
@@ -61,9 +63,15 @@ public class Game
 			
 			if(System.currentTimeMillis() - lastTimer > 1000)
 			{
+				timer++;
 				lastTimer += 1000;
 			}
 		}
+	}
+	
+	public int getGlobalTimerTime()
+	{
+		return timer;
 	}
 
 }

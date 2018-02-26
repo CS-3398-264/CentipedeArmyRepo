@@ -69,7 +69,8 @@ public class Player implements User
 	}
 
 	@Override
-	public void makeMove(Piece p, int x, int y) {
+	public void makeMove(Piece p, int x, int y) 
+	{
 		myTurn = false;
 		board = p.moveTo(x, y);
 	}

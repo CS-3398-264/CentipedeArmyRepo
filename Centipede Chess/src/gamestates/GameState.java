@@ -30,8 +30,7 @@ public interface GameState
 	 * checks to see if a button is being clicked, and performs
 	 * an action if that button is being clicked
 	 * @param rect
+	 * @return 
 	 */
-	public void isClickingButton(Rectangle rect);
-
-	void update(int x, int y);
+	public boolean isClickingButton(Rectangle rect);
 }

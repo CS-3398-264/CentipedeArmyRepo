@@ -22,15 +22,24 @@ public class Board
 	 * 0 = Black | 1 = White
 	 */
 	int currentPlayerTurn;
+	
 	int gameType;
+	int AIDifficulty1;
+	int AIDifficulty2;
 	
 	/**
 	 * Instantiates a new Board to start a new Game
 	 * Changes instantiation based off of AIvsAI, AIvsPerson, PersonvsPerson
+	 * @param hasCountDownTimer 
+	 * @param aiDifficulty2 
+	 * @param aiDifficulty1 
 	 */
-	public Board(int gameType)
+	public Board(int gameType, int aiDifficulty1, int aiDifficulty2)
 	{
 		this.gameType = gameType;
+		this.AIDifficulty1 = aiDifficulty1;
+		this.AIDifficulty2 = aiDifficulty2;
+		
 		board = new Piece[8][8];
 		possibleMoves = new boolean[8][8];
 		initBoard();
@@ -47,6 +56,7 @@ public class Board
 	{
 		this.possibleMoves = possibleMoves;
 	}
+	
 	public void clearPossibleMoves()
 	{
 		for(int i = 0; i < 8; i++)
@@ -88,16 +98,18 @@ public class Board
 			board[i][6] = new Pawn(this, i, 6, 1);
 		}
 		
-		
 		if(gameType == 0)
 		{
 			player1 = new AI(true);
+			((AI) player1).setDifficulty(AIDifficulty1);
 			player2 = new AI(false);
+			((AI) player2).setDifficulty(AIDifficulty2);
 		}
 		else if(gameType == 1)
 		{
 			player1 = new Player(this, true);
 			player2 = new AI(false);
+			((AI) player2).setDifficulty(AIDifficulty1);
 		}
 		else
 		{
@@ -173,7 +185,9 @@ public class Board
 					else
 						g.setColor(new Color(255, 255, 204));//tan
 				}
+				
 				g.fillRect(i * square, j * square, square, square);
+				
 				if(this.returnPiece(i, j) != null)
 				{
 					board[i][j].render(g);

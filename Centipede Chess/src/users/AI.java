@@ -9,6 +9,7 @@ import pieces.Piece;
 public class AI implements User
 {
 	int myColor;
+	int difficulty; //0 if Easy, 1 if Hard
 	Board board; 
 	boolean myTurn = false;
 	
@@ -50,6 +51,11 @@ public class AI implements User
 	public void makeMove(Piece p, int x, int y) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setDifficulty(int diff)
+	{
+		this.difficulty = diff;
 	}
 
 }

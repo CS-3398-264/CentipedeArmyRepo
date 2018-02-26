@@ -6,8 +6,9 @@ package input;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class InputManager implements MouseListener
+public class InputManager implements MouseListener, MouseMotionListener
 {
 	boolean isClicking;
 	Point mousePosition;
@@ -66,5 +67,20 @@ public class InputManager implements MouseListener
 	public boolean isClicking() {return isClicking;}
 	
 	public Point getMousePosition() {return mousePosition;}
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseDragged(MouseEvent e)
+	{
+	}
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseMoved(MouseEvent e)
+	{
+		mousePosition = e.getPoint();
+	}
 
 }
