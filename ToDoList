@@ -1,0 +1,41 @@
+#To Do List in order of Priority
+#Names are to be placed next to completed tasks in case an explanation is needed or an edit needs to be made.
+#Edits to current updates should be briefly explained and accompanied by the editor's name.
+
+Basic Setup:
+
+- Create Class Skeletons - Drew
+- Create Class Javadocs*
+- Create Method Javadocs - Drew
+- Create Game Loop - Drew
+- Create JFrame Display - Drew
+- Create Board/Piece Rendering - Jed
+- Create Input Listening - Jed
+
+PlayState / Game:
+
+Pieces updateMoves:
+- King*
+ - isInCheck() method*
+ - isInCheckMate() method*
+- Queen*
+- Rook - Jed
+- Pawn - Jed
+- Bishop*
+- Knight*
+
+- Player Turns - Jed
+- Playing Buttons*
+- "Spectate" Buttons*
+- Timer - Drew
+- CountDown Timer*
+
+Integrate AI:
+- Add AI to path library
+- Integrate AI with our program
+
+MenuState / Menu
+- Game Setting buttons - Drew
+- Creating New Game - Drew
+
+#Will create more after going through SRS at somepoint to get all the requirements - Drew

@@ -8,15 +8,35 @@ import pieces.Piece;
 
 public class AI implements User
 {
-	Board board;
+	int myColor;
+	int difficulty; //0 if Easy, 1 if Hard
+	Board board; 
+	boolean myTurn = false;
 	
 	/**
 	 * Initiates new AI to calculate moves and update the board based off calculation
 	 * @param board
 	 */
-	public AI()
+	public AI(boolean turn)
 	{
-		
+		this.myTurn = turn;
+		if(this.myTurn)
+		{
+			int myColor = 1;
+		}
+	}
+	
+	/**
+	 * Sets who has the next turn
+	 */
+	public void setNextTurn(boolean turn)
+	{
+		this.myTurn = turn;
+	}
+	
+	public boolean hasMoved()
+	{
+		return myTurn;
 	}
 	
 	/**
@@ -31,6 +51,11 @@ public class AI implements User
 	public void makeMove(Piece p, int x, int y) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setDifficulty(int diff)
+	{
+		this.difficulty = diff;
 	}
 
 }

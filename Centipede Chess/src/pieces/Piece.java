@@ -38,6 +38,20 @@ public abstract class Piece
 		pieceColor = color;
 	}
 	
+	public int getColor()
+	{
+		return pieceColor;
+	}
+	
+	/**
+	 * Returns possible moves
+	 * @return boolean matrix
+	 */
+	public boolean[][] getPossibleMoves()
+	{
+		return possibleMoves;
+	}
+	
 	/**
 	 * Moves piece on the board to x, y
 	 * @param x
@@ -46,7 +60,9 @@ public abstract class Piece
 	 */
 	public Board moveTo(int x, int y)
 	{
-		//TODO
+		board.moveTo(this, x, y, posX, posY); 
+		posX = x;
+		posY = y;
 		return board;
 	}
 	
@@ -138,7 +154,7 @@ public abstract class Piece
 			break;
 		case ("pieces.Queen"):
 			if(pieceColor == 0)
-			{
+			{ 
 				img = ImageIO.read(new File("src\\pieces\\BR.png"));
 				g.drawImage(img, posX*60, posY*60, null);
 			}
@@ -164,4 +180,5 @@ public abstract class Piece
 
 		}
 	}
+	public void setMoved() {}
 }

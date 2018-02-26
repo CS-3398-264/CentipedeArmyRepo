@@ -7,10 +7,12 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import gamestates.MenuState;
 import gamestates.PlayState;
 import input.InputManager;
 
@@ -25,6 +27,7 @@ public class Display extends Canvas
 	private JFrame frame;
 	
 	private PlayState playstate;
+	private MenuState menustate;
 	
 	private int width, height;
 	
@@ -40,14 +43,16 @@ public class Display extends Canvas
 	public Display()
 	{
 		listener = new InputManager();
-		currentState = 1;//should be 0
+		currentState = 0;
 		width = 800;
 		height = 600;
 		
-		playstate = new PlayState();
-		playstate.init();
+		playstate = new PlayState(this);
+		menustate = new MenuState(this);
+		menustate.init();
 		
 		this.addMouseListener(listener);
+		this.addMouseMotionListener(listener);
 		createWindow();
 	}
 	
@@ -75,7 +80,14 @@ public class Display extends Canvas
 	 */
 	public void update()
 	{
-		
+		if(currentState == 0)
+		{
+			menustate.update();
+		}
+		else
+		{
+			playstate.update();
+		}
 	}
 	
 	/**
@@ -91,19 +103,51 @@ public class Display extends Canvas
 		
 		g = (Graphics2D) bs.getDrawGraphics();
 		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, width, height);
+		
 		if(currentState == 0)
 		{
+			//Anti-Aliasing thing to keep menu text from looking ugly as hell
+			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			
+			menustate.render(g);
 		}
 		else
 		{
 			playstate.render(g);
 		}
 		
-		//g.setColor(Color.BLACK);
-		//g.fillRect(0, 0, width, height);
-		
 		g.dispose();
 		bs.show();
+	}
+
+	/**
+	 * @return
+	 */
+	public InputManager getMouseListener()
+	{
+		return listener;
+	}
+
+	/**
+	 * @param i
+	 */
+	public void setCurrentState(int i)
+	{
+		currentState = i;
+		
+		if(currentState == 0)
+			menustate.init();
+		if(currentState == 1)
+			playstate.init();
+	}
+
+	/**
+	 * @return
+	 */
+	public PlayState getPlayState()
+	{
+		return playstate;
 	}
 }

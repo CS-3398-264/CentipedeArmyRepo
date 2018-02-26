@@ -8,6 +8,8 @@ public class Game
 	private static boolean isRunning;
 	private static Display display;
 	
+	private static int timer;
+	
 	/**
 	 * Begins the program by passing off control to the start -> run() method
 	 * @param args
@@ -44,7 +46,7 @@ public class Game
 		double nsPerTick = 1000000000D / 60D;
 		
 		long lastTimer = System.currentTimeMillis();
-		double delta = 0;
+		double delta = 0; 
 
 		while(isRunning)
 		{
@@ -61,9 +63,15 @@ public class Game
 			
 			if(System.currentTimeMillis() - lastTimer > 1000)
 			{
+				timer++;
 				lastTimer += 1000;
 			}
 		}
+	}
+	
+	public int getGlobalTimerTime()
+	{
+		return timer;
 	}
 
 }

@@ -9,28 +9,61 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 
 import pieces.Piece;
+import users.AI;
+import users.Player;
 import users.User;
 
 public class Board
 {
 	Piece board[][];
 	User player1, player2;
-	
+	boolean possibleMoves[][];
 	/**
 	 * 0 = Black | 1 = White
 	 */
 	int currentPlayerTurn;
+	
 	int gameType;
+	int AIDifficulty1;
+	int AIDifficulty2;
 	
 	/**
 	 * Instantiates a new Board to start a new Game
 	 * Changes instantiation based off of AIvsAI, AIvsPerson, PersonvsPerson
+	 * @param hasCountDownTimer 
+	 * @param aiDifficulty2 
+	 * @param aiDifficulty1 
 	 */
-	public Board(int gameType)
+	public Board(int gameType, int aiDifficulty1, int aiDifficulty2)
 	{
 		this.gameType = gameType;
+		this.AIDifficulty1 = aiDifficulty1;
+		this.AIDifficulty2 = aiDifficulty2;
+		
 		board = new Piece[8][8];
+		possibleMoves = new boolean[8][8];
 		initBoard();
+	}
+
+	public void moveTo(Piece piece, int x, int y, int fromX, int fromY)
+	{
+		board[x][y] = piece;
+		board[fromX][fromY] = null;
+		clearPossibleMoves();
+	}
+	
+	public void setPossibleMoves(boolean possibleMoves[][])
+	{
+		this.possibleMoves = possibleMoves;
+	}
+	
+	public void clearPossibleMoves()
+	{
+		for(int i = 0; i < 8; i++)
+			for(int j = 0; j < 8; j++)
+			{
+				possibleMoves[i][j] = false;
+			}
 	}
 	
 	/**
@@ -65,28 +98,66 @@ public class Board
 			board[i][6] = new Pawn(this, i, 6, 1);
 		}
 		
-		
-		if(gameType == 1)
+		if(gameType == 0)
 		{
-			
+			player1 = new AI(true);
+			((AI) player1).setDifficulty(AIDifficulty1);
+			player2 = new AI(false);
+			((AI) player2).setDifficulty(AIDifficulty2);
 		}
-		else if(gameType == 2)
+		else if(gameType == 1)
 		{
-			
+			player1 = new Player(this, true);
+			player2 = new AI(false);
+			((AI) player2).setDifficulty(AIDifficulty1);
 		}
 		else
 		{
-			
+			player1 = new Player(this, true);
+			player2 = new Player(this, false);
 		}
+		currentPlayerTurn = 0;
 	}
 	
 	/**
 	 * Goes through the current users and updates pieces based
 	 * off of their values
 	 */
-	public void updateBoard()
+	public void updateBoard(int x, int y)
 	{
 		
+		if(currentPlayerTurn == 0)
+		{
+			if(player1.getClass().toString().equals("class users.Player"))
+			{
+				((Player) player1).checkInput(x, y); 
+			}
+			else if(player1.getClass().equals("class users.AI"))
+			{
+				((AI) player1).calculateMove();
+			}
+			if(!player1.hasMoved())
+			{
+				currentPlayerTurn = 1;
+				player2.setNextTurn(true);
+			}
+		}
+		else
+		{
+			if(player2.getClass().toString().equals("class users.Player"))
+			{
+				((Player) player2).checkInput(x, y);
+			}
+			else if(player2.getClass().equals("class users.AI"))
+			{
+				((AI) player2).calculateMove();
+			}
+			if(!player2.hasMoved())
+			{
+				currentPlayerTurn = 0;
+				player1.setNextTurn(true);
+			}
+		}
 	}
 	
 	/**
@@ -102,13 +173,21 @@ public class Board
 			{
 				if((i + j)%2 == 1)
 				{
-					g.setColor(new Color(102, 51, 0));
+					if(possibleMoves[i][j])
+						g.setColor(new Color(200, 200, 0));//dark yellow
+					else
+						g.setColor(new Color(102, 51, 0));//brown
 				}
 				else
 				{
-					g.setColor(new Color(255, 255, 204));
+					if(possibleMoves[i][j])
+						g.setColor(new Color(240, 240, 0));//yellow
+					else
+						g.setColor(new Color(255, 255, 204));//tan
 				}
+				
 				g.fillRect(i * square, j * square, square, square);
+				
 				if(this.returnPiece(i, j) != null)
 				{
 					board[i][j].render(g);
@@ -124,6 +203,8 @@ public class Board
 	 */
 	public Piece returnPiece(int x, int y)
 	{
+		if(x < 0 || x >= 8 || y < 0 || y > 8)
+			return null;
 		return board[x][y];
 	}
 }

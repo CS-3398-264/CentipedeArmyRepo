@@ -12,7 +12,7 @@ public class Rook extends Piece
 	 * Instantiate a new Rook on a specific board position
 	 */
 	public Rook(Board board, int xIndex, int yIndex, int color)
-	{
+	{ 
 		super(board, xIndex, yIndex, color);
 	}
 
@@ -55,30 +55,30 @@ public class Rook extends Piece
 		
 		for(int i = this.posX + 1; i < 8; i++) 
 		{
-			if(!hasPieceOn(i, this.posX))
+			if(!hasPieceOn(i, this.posY))
 			{
-				this.possibleMoves[i][this.posX] = true;
+				this.possibleMoves[i][this.posY] = true;
 			}
 			else
 			{
-				if(this.pieceColor != board.returnPiece(this.posX, i).pieceColor)
+				if(this.pieceColor != board.returnPiece(i, this.posY).pieceColor)
 				{
-					this.possibleMoves[i][this.posX] = true;
+					this.possibleMoves[i][this.posY] = true;
 				}
 				break;
 			}
 		}
 		for(int i = this.posX - 1; i >= 0; i--) 
 		{
-			if(!hasPieceOn(i, this.posX))
+			if(!hasPieceOn(i, this.posY))
 			{
-				this.possibleMoves[this.posX][i] = true;
+				this.possibleMoves[i][this.posY] = true;
 			}
 			else
 			{
-				if(this.pieceColor != board.returnPiece(this.posX, i).pieceColor)
+				if(this.pieceColor != board.returnPiece(i, this.posY).pieceColor)
 				{
-					this.possibleMoves[this.posX][i] = true;
+					this.possibleMoves[i][this.posY] = true;
 				}
 				break;
 			}
