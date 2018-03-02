@@ -15,7 +15,7 @@ Basic Setup:
 PlayState / Game:
 
 Pieces updateMoves:
-- King*
+- King* - Ryan
  - isInCheck() method*
  - isInCheckMate() method*
 - Queen*
