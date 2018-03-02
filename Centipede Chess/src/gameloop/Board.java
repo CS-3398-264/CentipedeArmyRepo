@@ -235,7 +235,7 @@ public class Board
 	 */
 	public Piece returnPiece(int x, int y)
 	{
-		if(x < 0 || x >= 8 || y < 0 || y > 8)
+		if(x < 0 || x >= 8 || y < 0 || y >= 8)
 			return null;
 		return board[x][y];
 	}
