@@ -18,7 +18,7 @@ Pieces updateMoves:
 - King* - Ryan
  - isInCheck() method*
  - isInCheckMate() method*
-- Queen*
+- Queen* - Ryan
 - Rook - Jed
 - Pawn - Jed
 - Bishop*
