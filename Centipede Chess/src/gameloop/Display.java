@@ -106,11 +106,11 @@ public class Display extends Canvas
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
 		
+		//Anti-Aliasing thing to keep menu text from looking ugly as hell
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
 		if(currentState == 0)
-		{
-			//Anti-Aliasing thing to keep menu text from looking ugly as hell
-			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			
+		{	
 			menustate.render(g);
 		}
 		else

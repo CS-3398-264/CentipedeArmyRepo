@@ -5,6 +5,7 @@ package gameloop;
 
 import pieces.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.io.IOException;
 
@@ -27,18 +28,22 @@ public class Board
 	int AIDifficulty1;
 	int AIDifficulty2;
 	
+	int winner = 0;
+
 	/**
 	 * Instantiates a new Board to start a new Game
 	 * Changes instantiation based off of AIvsAI, AIvsPerson, PersonvsPerson
 	 * @param hasCountDownTimer 
 	 * @param aiDifficulty2 
 	 * @param aiDifficulty1 
+	 * @param hasCountDownTimer 
 	 */
 	public Board(int gameType, int aiDifficulty1, int aiDifficulty2)
 	{
 		this.gameType = gameType;
 		this.AIDifficulty1 = aiDifficulty1;
 		this.AIDifficulty2 = aiDifficulty2;
+		this.winner = 0;
 		
 		board = new Piece[8][8];
 		possibleMoves = new boolean[8][8];
@@ -124,8 +129,7 @@ public class Board
 	 * off of their values
 	 */
 	public void updateBoard(int x, int y)
-	{
-		
+	{	
 		if(currentPlayerTurn == 0)
 		{
 			if(player1.getClass().toString().equals("class users.Player"))
@@ -206,5 +210,38 @@ public class Board
 		if(x < 0 || x >= 8 || y < 0 || y > 8)
 			return null;
 		return board[x][y];
+	}
+
+	/**
+	 * @return
+	 */
+	public int getCurrentPlayerTurn()
+	{
+		return currentPlayerTurn;
+	}
+	
+	public boolean currentPlayerIsAI()
+	{
+		if(currentPlayerTurn == 1)
+		{
+			return player1.getClass().equals("class users.AI");
+		}
+		
+		if(currentPlayerTurn == 2)
+		{
+			return player2.getClass().equals("class users.AI");
+		}
+		
+		return false;
+	}
+	
+	public int getWinner()
+	{
+		return winner;
+	}
+	
+	public void setWinner(int winner)
+	{
+		this.winner = winner;
 	}
 }
