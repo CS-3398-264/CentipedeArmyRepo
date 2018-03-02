@@ -25,17 +25,17 @@ Pieces updateMoves:
 - Knight*
 
 - Player Turns - Jed
-- Playing Buttons*
-- "Spectate" Buttons*
+- Playing Buttons - Drew
+- "Spectate" Buttons - Drew
 - Timer - Drew
-- CountDown Timer*
+- CountDown Timer - Drew
 
 Integrate AI:
-- Add AI to path library
-- Integrate AI with our program
+- Add AI to path library*
+- Integrate AI with our program*
 
 MenuState / Menu
 - Game Setting buttons - Drew
 - Creating New Game - Drew
 
-#Will create more after going through SRS at somepoint to get all the requirements - Drew
+#Will create more after going through SRS at somepoint to get all the requirements *- Drew
