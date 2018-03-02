@@ -7,7 +7,6 @@ import gameloop.Board;
 
 public class Bishop extends Piece
 {
-	boolean hasMovedYet;
 	/**
 	 * Instantiate a new Bishop on a specific board position
 	 */
@@ -22,25 +21,74 @@ public class Bishop extends Piece
 	@Override
 	public void updatePossibleMoves()
 	{
-		for(int i = this.posY + 1; i < 8; i++) 
+		for(int i = 1; i < 8; i++)
 		{
-		int j = i + 1;
-			
-				if(!hasPieceOn(j, i))
-					{
-						this.possibleMoves[j][i] = true;
-					}
-				else
+			if(this.posX + i > 7 || this.posY + i > 7)
+				;
+			else if(!hasPieceOn(this.posX + i,this.posY + i))
+			{
+				this.possibleMoves[this.posX + i][this.posY + i] = true;
+			}
+			else
+			{
+				if(this.pieceColor != board.returnPiece(this.posX + i,this.posY + i).pieceColor)
 				{
-					if(this.pieceColor != board.returnPiece(j, i).pieceColor)
-						{
-							this.possibleMoves[j][i] = true;
-						}
-					break;
+					this.possibleMoves[this.posX + i][this.posY + i] = true;
 				}
-		
+				break;
+			}
 		}
-			
+		for(int i = 1; i < 8; i++)
+		{
+			if(this.posX - i < 0 || this.posY - i < 0)
+				;
+			else if(!hasPieceOn(this.posX - i,this.posY - i))
+			{
+				this.possibleMoves[this.posX - i][this.posY - i] = true;
+			}
+			else
+			{
+				if(this.pieceColor != board.returnPiece(this.posX - i,this.posY - i).pieceColor)
+				{
+					this.possibleMoves[this.posX - i][this.posY - i] = true;
+				}
+				break;
+			}
+		}
 		
+		for(int i = 1; i < 8; i++)
+		{
+			if(this.posY + i > 7 || this.posX - i < 0)
+				;
+			else if(!hasPieceOn(this.posX - i,this.posY + i))
+			{
+				this.possibleMoves[this.posX - i][this.posY + i] = true;
+			}
+			else
+			{
+				if(this.pieceColor != board.returnPiece(this.posX - i,this.posY + i).pieceColor)
+				{
+					this.possibleMoves[this.posX - i][this.posY + i] = true;
+				}
+				break;
+			}
+		}
+		for(int i = 1; i < 8; i++)
+		{
+			if(this.posY - i < 0 || this.posX + i > 7)
+				;
+			else if(!hasPieceOn(this.posX + i,this.posY - i))
+			{
+				this.possibleMoves[this.posX + i][this.posY - i] = true;
+			}
+			else
+			{
+				if(this.pieceColor != board.returnPiece(this.posX + i,this.posY - i).pieceColor)
+				{
+					this.possibleMoves[this.posX + i][this.posY - i] = true;
+				}
+				break;
+			}
+		}
 	}
 }

@@ -52,6 +52,34 @@ public class Board
 
 	public void moveTo(Piece piece, int x, int y, int fromX, int fromY)
 	{
+		if(this.returnPiece(x, y) != null)//castle move
+		{
+			if(this.returnPiece(x, y).getColor() == this.returnPiece(fromX, fromY).getColor())
+			{
+				Piece temp = board[x][y];
+				piece.setPosition(x, y);
+				board[x][y] = piece;
+				temp.setPosition(fromX, fromY);
+				board[fromX][fromY]=temp;
+				
+				clearPossibleMoves();
+				piece.setMoved();
+				temp.setMoved();
+				return;
+			}
+			if(this.returnPiece(x, y).getClass().getSimpleName().equals("King"))
+			{
+				if(this.returnPiece(x, y).getColor() == 1)
+				{
+					this.setWinner(2);
+				}
+				else
+				{
+					this.setWinner(1);
+				}
+			}
+		}
+		piece.setMoved();
 		board[x][y] = piece;
 		board[fromX][fromY] = null;
 		clearPossibleMoves();

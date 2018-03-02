@@ -20,7 +20,7 @@ public abstract class Piece
 	 */
 	int pieceColor;
 	BufferedImage pieceImage;
-	
+	boolean hasMovedYet = false;
 	boolean possibleMoves[][];
 	Board board;
 
@@ -75,6 +75,10 @@ public abstract class Piece
 	 */
 	public boolean hasPieceOn(int x, int y)
 	{
+		if(x < 0 || x > 7)
+			return true;
+		if(y < 0 || y > 7)
+			return true;
 		return (board.returnPiece(x, y) != null);
 	}
 	
@@ -155,12 +159,12 @@ public abstract class Piece
 		case ("pieces.Queen"):
 			if(pieceColor == 0)
 			{ 
-				img = ImageIO.read(new File("src\\pieces\\BR.png"));
+				img = ImageIO.read(new File("src\\pieces\\BQ.png"));
 				g.drawImage(img, posX*60, posY*60, null);
 			}
 			else
 			{
-				img = ImageIO.read(new File("src\\pieces\\WR.png"));
+				img = ImageIO.read(new File("src\\pieces\\WQ.png"));
 				g.drawImage(img, posX*60, posY*60, null);
 			}
 			break;
@@ -180,5 +184,7 @@ public abstract class Piece
 
 		}
 	}
-	public void setMoved() {}
+	public void setMoved() {hasMovedYet = true;}
+	public boolean hasMovedYet() {return hasMovedYet;}
+	public void setPosition(int x, int y) { this.posX = x; this.posY = y;}
 }

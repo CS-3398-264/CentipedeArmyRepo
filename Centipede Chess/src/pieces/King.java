@@ -21,66 +21,133 @@ public class King extends Piece
 	@Override
 	public void updatePossibleMoves()
 	{
-		for(int i = this.posY + 1; i < 2; i++)
+		if(this.posX + 1 > 7);
+		else if(!hasPieceOn(this.posX + 1, this.posY))
 		{
-		    if(!hasPieceOn(this.posX, i))
-		    {
-			this.possibleMoves[this.posX][i] = true;
-		    }
-		    else
-		    {
-			if(this.pieceColor != board.returnPiece(this.posX, i).pieceColor)
-			{
-			    this.possibleMoves[this.posX][i] = true;
-			}
-			break;
-		    }
+			this.possibleMoves[this.posX + 1][this.posY] = true;
 		}
-		for(int i = this.posY - 1; i >= 0; i--)
+		else
 		{
-		    if(!hasPieceOn(this.posX, i))
-		    {
-			this.possibleMoves[this.posX][i] = true;
-		    }
-		    else
-		    {
-			if(this.pieceColor != board.returnPiece(this.posX, i).pieceColor)
+			if(this.pieceColor != board.returnPiece(this.posX + 1, this.posY).pieceColor)
 			{
-			    this.possibleMoves[this.posX][i] = true;
+				this.possibleMoves[this.posX + 1][this.posY] = true;
 			}
-			break;
-		    }
+		}
+		if(this.posX - 1 < 0);
+		else if(!hasPieceOn(this.posX - 1, this.posY))
+		{
+			this.possibleMoves[this.posX - 1][this.posY] = true;
+		}
+		else
+		{
+			if(this.pieceColor != board.returnPiece(this.posX - 1, this.posY).pieceColor)
+			{
+				this.possibleMoves[this.posX - 1][this.posY] = true;
+			}
 		}
 
-		for(int i = this.posX + 1; i < 2; i++)
+
+		if(this.posY + 1 > 7);
+		else if(!hasPieceOn(this.posX, this.posY + 1))
 		{
-		    if(!hasPieceOn(i, this.posY))
-		    {
-			this.possibleMoves[i][this.posY] = true;
-		    }
-		    else
-		    {
-			if(this.pieceColor != board.returnPiece(i, this.posY).pieceColor)
-			{
-			    this.possibleMoves[i][this.posY] = true;
-			}
-			break;
-		    }
+			this.possibleMoves[this.posX][this.posY + 1] = true;
 		}
-		for(int i = this.posX - 1; i >= 0; i--)
+		else
 		{
-		    if(!hasPieceOn(i, this.posY))
-		    {
-			this.possibleMoves[i][this.posY] = true;
-		    }
-		    else
-		    {
-			if(this.pieceColor != board.returnPiece(i, this.posY).pieceColor)
+			if(this.pieceColor != board.returnPiece(this.posX, this.posY + 1).pieceColor)
 			{
-			    this.possibleMoves[i][this.posY] = true;
+				this.possibleMoves[this.posX][this.posY + 1] = true;
 			}
-			break;
-		    }
+		}
+		if(this.posY - 1 < 0);
+		else if(!hasPieceOn(this.posX, this.posY - 1))
+		{
+			this.possibleMoves[this.posX][this.posY - 1] = true;
+		}
+		else
+		{
+			if(this.pieceColor != board.returnPiece(this.posX, this.posY - 1).pieceColor)
+			{
+				this.possibleMoves[this.posX][this.posY - 1] = true;
+			}
+		}
+		
+		if(this.posX + 1 > 7 || this.posY + 1 > 7);
+		else if(!hasPieceOn(this.posX + 1, this.posY + 1))
+		{
+			this.possibleMoves[this.posX + 1][this.posY + 1] = true;
+		}
+		else
+		{
+			if(this.pieceColor != board.returnPiece(this.posX + 1, this.posY + 1).pieceColor)
+			{
+				this.possibleMoves[this.posX + 1][this.posY + 1] = true;
+			}
+		}
+		if(this.posX - 1 < 0 || this.posY - 1 < 0);
+		else if(!hasPieceOn(this.posX - 1, this.posY - 1))
+		{
+			this.possibleMoves[this.posX - 1][this.posY - 1] = true;
+		}
+		else
+		{
+			if(this.pieceColor != board.returnPiece(this.posX - 1, this.posY - 1).pieceColor)
+			{
+				this.possibleMoves[this.posX - 1][this.posY - 1] = true;
+			}
+		}
+
+
+		if(this.posY + 1 > 7 || this.posX - 1 < 0);
+		else if(!hasPieceOn(this.posX - 1, this.posY + 1))
+		{
+			this.possibleMoves[this.posX - 1][this.posY + 1] = true;
+		}
+		else
+		{
+			if(this.pieceColor != board.returnPiece(this.posX - 1, this.posY + 1).pieceColor)
+			{
+				this.possibleMoves[this.posX - 1][this.posY + 1] = true;
+			}
+		}
+		if(this.posY - 1 < 0 || this.posX + 1 > 7);
+		else if(!hasPieceOn(this.posX + 1, this.posY - 1))
+		{
+			this.possibleMoves[this.posX + 1][this.posY - 1] = true;
+		}
+		else
+		{
+			if(this.pieceColor != board.returnPiece(this.posX + 1, this.posY - 1).pieceColor)
+			{
+				this.possibleMoves[this.posX + 1][this.posY - 1] = true;
+			}
+		}
+		
+		
+		if(!this.hasMovedYet())
+		{
+			if(this.getColor() == 1)
+			{
+				if(board.returnPiece(0, 7) != null && board.returnPiece(0, 7).hasMovedYet() == false)
+				{
+					this.possibleMoves[0][7] = true;
+				}
+				if(board.returnPiece(7, 7) != null && board.returnPiece(7, 7).hasMovedYet() == false)
+				{
+					this.possibleMoves[7][7] = true;
+				}
+			}
+			else
+			{
+				if(board.returnPiece(0, 0) != null && board.returnPiece(0, 0).hasMovedYet() == false)
+				{
+					this.possibleMoves[0][0] = true;
+				}
+				if(board.returnPiece(7, 0) != null && board.returnPiece(7, 0).hasMovedYet() == false)
+				{
+					this.possibleMoves[7][0] = true;
+				}
+			}
 		}
 	}
 }

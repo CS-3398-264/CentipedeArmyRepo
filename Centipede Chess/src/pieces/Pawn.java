@@ -7,8 +7,6 @@ import gameloop.Board;
 
 public class Pawn extends Piece
 {
-	public boolean hasMovedYet;
-	
 	/**
 	 * Instantiate a new Pawn on a specific board position
 	 */
@@ -41,12 +39,13 @@ public class Pawn extends Piece
 		if(!hasPieceOn(this.posX, this.posY + 1*color))
 		{
 			this.possibleMoves[this.posX][this.posY + 1*color] = true;
-		}
-		if(!hasMovedYet)
-		{
-			if(!hasPieceOn(this.posX, this.posY + 2*color))
+		
+			if(!hasMovedYet)
 			{
-				this.possibleMoves[this.posX][this.posY + 2*color] = true;
+				if(!hasPieceOn(this.posX, this.posY + 2*color))
+				{
+					this.possibleMoves[this.posX][this.posY + 2*color] = true;
+				}
 			}
 		}
 		

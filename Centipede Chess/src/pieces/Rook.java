@@ -7,7 +7,6 @@ import gameloop.Board;
 
 public class Rook extends Piece
 {
-	boolean hasMovedYet;
 	/**
 	 * Instantiate a new Rook on a specific board position
 	 */
@@ -81,6 +80,24 @@ public class Rook extends Piece
 					this.possibleMoves[i][this.posY] = true;
 				}
 				break;
+			}
+		}
+		
+		if(!this.hasMovedYet())
+		{
+			if(this.getColor() == 1)
+			{
+				if(board.returnPiece(4, 7) != null && board.returnPiece(4, 7).hasMovedYet() == false)
+				{
+					this.possibleMoves[4][7] = true;
+				}
+			}
+			else
+			{
+				if(board.returnPiece(4, 0) != null && board.returnPiece(4, 0).hasMovedYet() == false)
+				{
+					this.possibleMoves[4][0] = true;
+				}
 			}
 		}
 	}
