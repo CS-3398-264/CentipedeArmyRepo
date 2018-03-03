@@ -38,7 +38,7 @@ public class Player implements User
 	
 	public boolean hasMoved()
 	{
-		return myTurn;
+		return !myTurn;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Player implements User
 		if(selectedPiece != null && selectedPiece.getColor() == this.myColor)
 		{
 			if(x < 0 || x > 7 || y < 0 || y > 7);
-			else if(selectedPiece.getPossibleMoves()[x][y])
+			if(selectedPiece.getPossibleMoves()[x][y])
 			{
 				makeMove(selectedPiece, x, y);
 				if(selectedPiece.getClass().getName().equals("pieces.Pawn"))
@@ -65,7 +65,6 @@ public class Player implements User
 				selectedPiece.updatePossibleMoves();
 				board.setPossibleMoves(selectedPiece.getPossibleMoves());
 			}
-			
 		}
 		else
 		{

@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import gameloop.Board;
@@ -85,7 +86,7 @@ public class PlayState implements GameState
 		gameTimerSeconds = 0;
 		timerTracker = 0;
 		
-		aiWaitTime = 450;
+		aiWaitTime = 30;
 		
 		isPaused = false;
 	}
@@ -96,7 +97,7 @@ public class PlayState implements GameState
 	@Override
 	public void update()
 	{	
-		if(!isPaused)
+		if(!isPaused && board.getWinner() == 0)
 		{
 			//Timer Updater Begin
 			timerTracker++;
@@ -128,8 +129,9 @@ public class PlayState implements GameState
 						{
 							if(countdownTimerMinutes1 <= 0)
 							{
-								board.setWinner(2);
-							}
+								if(board.getWinner() == 0)
+									board.setWinner(2);
+							}	
 							else
 							{
 								countdownTimerSeconds1 = 59;
@@ -150,7 +152,8 @@ public class PlayState implements GameState
 						{
 							if(countdownTimerMinutes2 <= 0)
 							{
-								board.setWinner(2);
+								if(board.getWinner() == 0)
+									board.setWinner(1);
 							}
 							else
 							{
@@ -179,13 +182,13 @@ public class PlayState implements GameState
 					
 					if(x == 1)
 					{
-						if(aiWaitTime >= 100)
-							aiWaitTime -= 100;
+						if(aiWaitTime >= 5)
+							aiWaitTime -= 5;
 					}
 					
 					if(x == 2)
 					{
-						aiWaitTime += 100;
+						aiWaitTime += 5;
 					}
 				}
 				else	//not AI vs AI
@@ -220,7 +223,7 @@ public class PlayState implements GameState
 			{
 				aiWaitTimer++;
 				
-				if(aiWaitTimer > aiWaitTime)
+				if(aiWaitTimer > aiWaitTime && board.getWinner() == 0)
 				{
 					aiWaitTimer = 0;
 					board.updateBoard(0, 0);
@@ -238,6 +241,7 @@ public class PlayState implements GameState
 					}
 				}
 				else
+				if(board.getWinner() == 0)
 					board.updateBoard(0, 0);
 		}
 		
@@ -281,7 +285,8 @@ public class PlayState implements GameState
 			g.drawString("Slow Down", (int) playButtons[2].getX() + 55, (int) playButtons[2].getY() + 60);
 			
 			g.setFont(new Font("Calibri", Font.BOLD, 15));
-			g.drawString("Current AI wait time is " + aiWaitTime + "ms", 560, 100);
+			
+			g.drawString("Current AI wait time is " + aiWaitTime + "ticks", 560, 100);
 		}
 		
 		if(gameChoice != 0)
@@ -421,7 +426,7 @@ public class PlayState implements GameState
 	 */
 	public void setAIDifficultyTwo(int aIChoice2)
 	{
-		this.aiDifficulty1 = aIChoice2;
+		this.aiDifficulty2 = aIChoice2;
 	}
 
 	/**

@@ -104,14 +104,19 @@ public class Board
 					{
 						if(this.returnPiece(x + 2, fromY) == null && this.returnPiece(x + 3, fromY) == null)
 						{
-							board[x + 2][fromY] = piece;
-							board[x + 3][fromY] = board[x][y];
-							this.returnPiece(x + 2, fromY).setPosition(x + 2, fromY);
-							this.returnPiece(x + 3, fromY).setPosition(x + 3, fromY);
-							this.returnPiece(x, fromY).setMoved();
-							this.returnPiece(x, fromY).setMoved();
-							board[x][y] = null;
-							clearPossibleMoves();
+							
+							try{
+								board[x + 2][fromY] = piece;
+								board[x + 3][fromY] = board[x][y];
+								this.returnPiece(x + 2, fromY).setPosition(x + 2, fromY);
+								this.returnPiece(x + 3, fromY).setPosition(x + 3, fromY);
+								this.returnPiece(x, fromY).setMoved();
+								this.returnPiece(x, fromY).setMoved();
+								board[x][y] = null;
+								clearPossibleMoves();
+							} catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								
+							}
 						}
 					}
 				}
@@ -183,15 +188,15 @@ public class Board
 		
 		if(gameType == 0)
 		{
-			player1 = new AI(true);
+			player1 = new AI(this, true);
 			((AI) player1).setDifficulty(AIDifficulty1);
-			player2 = new AI(false);
+			player2 = new AI(this, false);
 			((AI) player2).setDifficulty(AIDifficulty2);
 		}
 		else if(gameType == 1)
 		{
 			player1 = new Player(this, true);
-			player2 = new AI(false);
+			player2 = new AI(this, false);
 			((AI) player2).setDifficulty(AIDifficulty1);
 		}
 		else
@@ -214,11 +219,11 @@ public class Board
 			{
 				((Player) player1).checkInput(x, y); 
 			}
-			else if(player1.getClass().equals("class users.AI"))
+			else if(player1.getClass().toString().equals("class users.AI"))
 			{
 				((AI) player1).calculateMove();
 			}
-			if(!player1.hasMoved())
+			if(player1.hasMoved())
 			{
 				currentPlayerTurn = 1;
 				player2.setNextTurn(true);
@@ -230,11 +235,11 @@ public class Board
 			{
 				((Player) player2).checkInput(x, y);
 			}
-			else if(player2.getClass().equals("class users.AI"))
+			else if(player2.getClass().toString().equals("class users.AI"))
 			{
 				((AI) player2).calculateMove();
 			}
-			if(!player2.hasMoved())
+			if(player2.hasMoved())
 			{
 				currentPlayerTurn = 0;
 				player1.setNextTurn(true);
@@ -300,14 +305,14 @@ public class Board
 	
 	public boolean currentPlayerIsAI()
 	{
-		if(currentPlayerTurn == 1)
+		if(currentPlayerTurn == 0)
 		{
-			return player1.getClass().equals("class users.AI");
+			return player1.getClass().toString().equals("class users.AI");
 		}
 		
-		if(currentPlayerTurn == 2)
+		if(currentPlayerTurn == 1)
 		{
-			return player2.getClass().equals("class users.AI");
+			return player2.getClass().toString().equals("class users.AI");
 		}
 		
 		return false;

@@ -167,7 +167,7 @@ public class MenuState implements GameState
 							display.getPlayState().setGameSetting(gameChoice);
 							display.getPlayState().setTimerSetting(timerChoice);
 							display.getPlayState().setAIDifficultyOne(AIChoice1);
-							display.getPlayState().setAIDifficultyOne(AIChoice2);
+							display.getPlayState().setAIDifficultyTwo(AIChoice2);
 							display.setCurrentState(1);
 						}
 						
@@ -212,6 +212,10 @@ public class MenuState implements GameState
 		g.setFont(new Font("Calibri", Font.BOLD, 30));
 		if(menuChoices == 0)
 		{
+			g.setFont(new Font("Calibri",Font.BOLD, 50));
+			g.drawString("Welcome to Centipede Chess!", 90, 75);
+			
+			g.setFont(new Font("Calibri", Font.BOLD, 30));
 			g.drawString("Please Pick Your Game Type", 230, 125);
 			g.drawString("AI vs AI", (int) menuButtons[0].getX() + 80, (int) menuButtons[0].getY() + 60);
 			g.drawString("Player vs AI", (int) menuButtons[1].getX() + 50, (int) menuButtons[1].getY() + 60);
