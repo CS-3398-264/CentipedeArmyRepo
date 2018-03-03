@@ -31,7 +31,6 @@ public class Queen extends Piece
 			}
 			else
 			{
-				System.out.println((this.posX + i) + " " + (this.posY + i));
 				if(this.pieceColor != board.returnPiece(this.posX + i,this.posY + i).pieceColor)
 				{
 					this.possibleMoves[this.posX + i][this.posY + i] = true;

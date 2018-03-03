@@ -82,21 +82,38 @@ public class Rook extends Piece
 				break;
 			}
 		}
-		
 		if(!this.hasMovedYet())
 		{
 			if(this.getColor() == 1)
 			{
-				if(board.returnPiece(4, 7) != null && board.returnPiece(4, 7).hasMovedYet() == false)
+				if(board.returnPiece(4, 7) != null && board.returnPiece(4, 7).hasMovedYet() == false
+						&& board.returnPiece(2, 7) == null && board.returnPiece(3, 7) == null)
 				{
 					this.possibleMoves[4][7] = true;
+				}
+				else
+				{
+					if(board.returnPiece(4, 7) != null && board.returnPiece(4, 7).hasMovedYet() == false
+							&& board.returnPiece(6, 7) == null && board.returnPiece(5, 7) == null)
+					{
+						this.possibleMoves[4][7] = true;
+					}
 				}
 			}
 			else
 			{
-				if(board.returnPiece(4, 0) != null && board.returnPiece(4, 0).hasMovedYet() == false)
+				if(board.returnPiece(4, 0) != null && board.returnPiece(4, 0).hasMovedYet() == false
+						&& board.returnPiece(2, 0) == null && board.returnPiece(3, 0) == null)
 				{
 					this.possibleMoves[4][0] = true;
+				}
+				else
+				{
+					if(board.returnPiece(4, 0) != null && board.returnPiece(4, 0).hasMovedYet() == false
+							&& board.returnPiece(6, 0) == null && board.returnPiece(5, 0) == null)
+					{
+						this.possibleMoves[4][0] = true;
+					}
 				}
 			}
 		}

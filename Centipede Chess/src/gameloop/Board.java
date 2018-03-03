@@ -56,15 +56,65 @@ public class Board
 		{
 			if(this.returnPiece(x, y).getColor() == this.returnPiece(fromX, fromY).getColor())
 			{
-				Piece temp = board[x][y];
-				piece.setPosition(x, y);
-				board[x][y] = piece;
-				temp.setPosition(fromX, fromY);
-				board[fromX][fromY]=temp;
-				
-				clearPossibleMoves();
-				piece.setMoved();
-				temp.setMoved();
+				if(fromX == 7)//right rook
+				{
+					if(this.returnPiece(fromX - 1, fromY) == null && this.returnPiece(fromX - 2, fromY) == null)
+					{
+						board[fromX - 2][fromY] = piece;
+						board[fromX - 1][fromY] = board[x][y];
+						this.returnPiece(fromX - 2, fromY).setPosition(fromX - 2, fromY);
+						this.returnPiece(fromX - 1, fromY).setPosition(fromX - 1, fromY);
+						this.returnPiece(fromX, fromY).setMoved();
+						this.returnPiece(fromX, fromY).setMoved();
+						board[x][y] = null;
+						clearPossibleMoves();
+					}
+				}
+				else if(fromX == 0)//left rook
+				{
+					if(this.returnPiece(fromX + 2, fromY) == null && this.returnPiece(fromX + 3, fromY) == null)
+					{
+						board[fromX + 3][fromY] = piece;
+						board[fromX + 2][fromY] = board[x][y];
+						this.returnPiece(fromX + 3, fromY).setPosition(fromX + 3, fromY);
+						this.returnPiece(fromX + 2, fromY).setPosition(fromX + 2, fromY);
+						this.returnPiece(fromX, fromY).setMoved();
+						this.returnPiece(fromX, fromY).setMoved();
+						board[x][y] = null;
+						clearPossibleMoves();
+					}
+				}
+				else//king
+				{
+					if(x == 7)//clicked on right rook
+					{
+						if(this.returnPiece(x - 1, fromY) == null && this.returnPiece(x - 2, fromY) == null)
+						{
+							board[x - 1][fromY] = piece;
+							board[x - 2][fromY] = board[x][y];
+							this.returnPiece(x - 1, fromY).setPosition(x - 1, fromY);
+							this.returnPiece(x - 2, fromY).setPosition(x - 2, fromY);
+							this.returnPiece(x, fromY).setMoved();
+							this.returnPiece(x, fromY).setMoved();
+							board[x][y] = null;
+							clearPossibleMoves();
+						}
+					}
+					else//clicked on left rook
+					{
+						if(this.returnPiece(x + 2, fromY) == null && this.returnPiece(x + 3, fromY) == null)
+						{
+							board[x + 2][fromY] = piece;
+							board[x + 3][fromY] = board[x][y];
+							this.returnPiece(x + 2, fromY).setPosition(x + 2, fromY);
+							this.returnPiece(x + 3, fromY).setPosition(x + 3, fromY);
+							this.returnPiece(x, fromY).setMoved();
+							this.returnPiece(x, fromY).setMoved();
+							board[x][y] = null;
+							clearPossibleMoves();
+						}
+					}
+				}
 				return;
 			}
 			if(this.returnPiece(x, y).getClass().getSimpleName().equals("King"))

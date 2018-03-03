@@ -83,7 +83,7 @@ public class King extends Piece
 			{
 				this.possibleMoves[this.posX + 1][this.posY + 1] = true;
 			}
-		}
+		} 
 		if(this.posX - 1 < 0 || this.posY - 1 < 0);
 		else if(!hasPieceOn(this.posX - 1, this.posY - 1))
 		{
@@ -126,24 +126,28 @@ public class King extends Piece
 		
 		if(!this.hasMovedYet())
 		{
-			if(this.getColor() == 1)
+			if(this.getColor() == 1)//white king
 			{
-				if(board.returnPiece(0, 7) != null && board.returnPiece(0, 7).hasMovedYet() == false)
+				if(board.returnPiece(0, 7) != null && board.returnPiece(0, 7).hasMovedYet() == false//left rook
+						&& board.returnPiece(2, 7) == null && board.returnPiece(3, 7) == null)
 				{
 					this.possibleMoves[0][7] = true;
 				}
-				if(board.returnPiece(7, 7) != null && board.returnPiece(7, 7).hasMovedYet() == false)
+				if(board.returnPiece(7, 7) != null && board.returnPiece(7, 7).hasMovedYet() == false//right rook
+						&& board.returnPiece(5, 7) == null && board.returnPiece(6, 7) == null)
 				{
 					this.possibleMoves[7][7] = true;
 				}
 			}
-			else
+			else//black king
 			{
-				if(board.returnPiece(0, 0) != null && board.returnPiece(0, 0).hasMovedYet() == false)
+				if(board.returnPiece(0, 0) != null && board.returnPiece(0, 0).hasMovedYet() == false//left rook
+						&& board.returnPiece(2, 0) == null && board.returnPiece(3, 0) == null)
 				{
 					this.possibleMoves[0][0] = true;
 				}
-				if(board.returnPiece(7, 0) != null && board.returnPiece(7, 0).hasMovedYet() == false)
+				if(board.returnPiece(7, 0) != null && board.returnPiece(7, 0).hasMovedYet() == false//right rook
+						&& board.returnPiece(5, 0) == null && board.returnPiece(6, 0) == null)
 				{
 					this.possibleMoves[7][0] = true;
 				}

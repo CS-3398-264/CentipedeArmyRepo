@@ -128,8 +128,7 @@ public class PlayState implements GameState
 						{
 							if(countdownTimerMinutes1 <= 0)
 							{
-								if(board.getWinner() == 0)
-									board.setWinner(2);
+								board.setWinner(2);
 							}
 							else
 							{
@@ -151,8 +150,7 @@ public class PlayState implements GameState
 						{
 							if(countdownTimerMinutes2 <= 0)
 							{
-								if(board.getWinner() == 0)
-									board.setWinner(1);
+								board.setWinner(2);
 							}
 							else
 							{

@@ -60,9 +60,12 @@ public abstract class Piece
 	 */
 	public Board moveTo(int x, int y)
 	{
-		board.moveTo(this, x, y, posX, posY); 
+		int tempx = posX,
+			tempy = posY;
 		posX = x;
 		posY = y;
+		board.moveTo(this, x, y, tempx, tempy); 
+		
 		return board;
 	}
 	
