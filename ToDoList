@@ -15,14 +15,12 @@ Basic Setup:
 PlayState / Game:
 
 Pieces updateMoves:
-- King* - Ryan
- - isInCheck() method*
- - isInCheckMate() method*
-- Queen* - Ryan
+- King - Ryan
+- Queen - Ryan
 - Rook - Jed
 - Pawn - Jed
-- Bishop*
-- Knight*
+- Bishop - Jesse
+- Knight - Tobi
 
 - Player Turns - Jed
 - Playing Buttons - Drew
@@ -31,11 +29,11 @@ Pieces updateMoves:
 - CountDown Timer - Drew
 
 Integrate AI:
-- Add AI to path library*
-- Integrate AI with our program*
+- Add Easy AI - Drew
+- Add Hard AI*
 
 MenuState / Menu
 - Game Setting buttons - Drew
 - Creating New Game - Drew
 
-#Will create more after going through SRS at somepoint to get all the requirements *- Drew
+#Will create more after going through SRS at somepoint to get all the requirements - Drew
