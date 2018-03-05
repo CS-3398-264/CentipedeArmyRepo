@@ -327,4 +327,15 @@ public class Board
 	{
 		this.winner = winner;
 	}
+	
+	
+	//AI Related functions
+	public void setNull(int x, int y)
+	{
+		this.board[x][y] = null;
+	}
+	public void setPiece(Piece piece, int x, int y)
+	{
+		this.board[x][y] = piece;
+	}
 }

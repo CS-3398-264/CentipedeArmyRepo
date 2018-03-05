@@ -43,6 +43,16 @@ public abstract class Piece
 		return pieceColor;
 	}
 	
+	public void clearPossibleMoves()
+	{
+		for(int i = 0; i < 8; i++)
+			for(int j = 0; j < 8; j++)
+			{
+				possibleMoves[i][j] = false;
+			}
+	}
+	
+	
 	/**
 	 * Returns possible moves
 	 * @return boolean matrix
@@ -65,7 +75,6 @@ public abstract class Piece
 		posX = x;
 		posY = y;
 		board.moveTo(this, x, y, tempx, tempy); 
-		
 		return board;
 	}
 	
