@@ -23,8 +23,7 @@ public class InputManager implements MouseListener, MouseMotionListener
 	//@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		mousePosition = e.getPoint();
-		isClicking = true;
+		
 	}
 
 	/* (non-Javadoc)
@@ -33,7 +32,8 @@ public class InputManager implements MouseListener, MouseMotionListener
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		
+		mousePosition = e.getPoint();
+		isClicking = true;
 	}
 
 	/* (non-Javadoc)
@@ -42,7 +42,8 @@ public class InputManager implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		
+		mousePosition = e.getPoint();
+		isClicking = false;
 	}
 
 	/* (non-Javadoc)
@@ -51,7 +52,7 @@ public class InputManager implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
-		
+		mousePosition = e.getPoint();
 	}
 
 	/* (non-Javadoc)
@@ -60,7 +61,7 @@ public class InputManager implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
-		
+		mousePosition = e.getPoint();
 	}
 	
 	public void setClicking(boolean isClicking) {this.isClicking = isClicking;}
@@ -73,6 +74,7 @@ public class InputManager implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
+		mousePosition = e.getPoint();
 	}
 	/* (non-Javadoc)
 	 * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)

@@ -86,24 +86,9 @@ public class AI implements User
 					if(piece.getPossibleMoves()[x][y] == true)
 					{
 						//Immediately take possible move
-						if(difficulty == 0)
-						{
-							makeMove(piece, x, y);
-							if(piece.getClass().getName().equals("pieces.Pawn"))
-								piece.setMoved();
-						}
-						else
-						if(difficulty == 1)
-						{
-							//
-							
-							
-							
-							//
-							makeMove(piece, x, y);
-							if(piece.getClass().getName().equals("pieces.Pawn"))
-								piece.setMoved();
-						}
+						makeMove(piece, x, y);
+						if(piece.getClass().getName().equals("pieces.Pawn"))
+							piece.setMoved();
 					}
 				}
 				piece = null;
