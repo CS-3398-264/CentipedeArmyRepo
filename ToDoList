@@ -5,7 +5,6 @@
 Basic Setup:
 
 - Create Class Skeletons - Drew
-- Create Class Javadocs*
 - Create Method Javadocs - Drew
 - Create Game Loop - Drew
 - Create JFrame Display - Drew
@@ -13,6 +12,9 @@ Basic Setup:
 - Create Input Listening - Jed
 
 PlayState / Game:
+- Add turn system - Drew
+- Add select piece system - Jed
+- Add hover system - Jed
 
 Pieces updateMoves:
 - King - Ryan
@@ -30,10 +32,11 @@ Pieces updateMoves:
 
 Integrate AI:
 - Add Easy AI - Drew
-- Add Hard AI*
+- Add Hard AI - Jed
 
 MenuState / Menu
 - Game Setting buttons - Drew
 - Creating New Game - Drew
 
-#Will create more after going through SRS at somepoint to get all the requirements - Drew
+Unit Testing:
+- Add as they are completed
