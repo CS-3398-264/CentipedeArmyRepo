@@ -17,10 +17,10 @@ More likely case:
 So in short hopefully the runnable jar works
 
 
-There should be no game breaking bugs (but im sure you'll surprise us)
-All features should work as intended
-Didnt have time to implement "Checkmate" so the game ends when you kill the king (lets call it hardmode because nothing is holding your hand and making sure you move your king out of danger)
-Easy AI is 100% Random
-Hard AI is Minimax
+- There should be no game breaking bugs (but im sure you'll surprise us)
+- All features should work as intended
+- Didnt have time to implement "Checkmate" so the game ends when you kill the king (lets call it hardmode because nothing is holding your  hand and making sure you move your king out of danger)
+- Easy AI is 100% Random
+- Hard AI is Minimax
 
 Oh also the timers run off of update rate (60TPS in a game of chess lets go boi) so lets hope you didnt download our .jar onto a toaster, otherwise you'll wonder why 1 second is actually 5 seconds.
