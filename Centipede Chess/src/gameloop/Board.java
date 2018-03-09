@@ -47,7 +47,9 @@ public class Board
 		
 		board = new Piece[8][8];
 		possibleMoves = new boolean[8][8];
-		initBoard();
+		
+		if(gameType != -1) //For JUnit Test
+			initBoard();
 	}
 
 	public void moveTo(Piece piece, int x, int y, int fromX, int fromY)
@@ -326,6 +328,11 @@ public class Board
 	public void setWinner(int winner)
 	{
 		this.winner = winner;
+	}
+	
+	public void addPiece(Piece piece, int x, int y)
+	{
+		board[x][y] = piece;
 	}
 	
 	

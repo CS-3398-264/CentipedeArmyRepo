@@ -6,81 +6,170 @@ import org.junit.Test;
 
 public class PossibleMovesTest 
 {
-
-	@Test
+	boolean[][] blankBoard = new boolean[8][8];
+	boolean[][] correctCase;
+	
+  @Test
   public void BishopPossibleMoves()
   {
-    Board board = new Board(0, 0, 0);
+    Board board = new Board(-1, 0, 0);
     Bishop bishop  = new Bishop(board, 3, 4, 1);
-    Pawn pawn1 = new Pawn(board, 0, 7, 1);
-    Pawn pawn2 = new Pawn(board, 6, 7, 0);
-    Pawn pawn3 = new Pawn(board, 0, 1, 1);
-    Pawn pawn4 = new Pawn(board, 7, 0, 0);
-    Assert.assertNotEquals(pawn1, bishop);
+    board.addPiece(bishop, 3, 4);
+    
+    bishop.updatePossibleMoves();
+    
+    //Negative Test Case
+    Assert.assertNotEquals(blankBoard, bishop.getPossibleMoves());
+    
+    boolean[][] correctCase =
+    	{
+    		{false, true, false, false, false, false, false, true},
+    		{false, false, true, false, false, false, true, false},
+    		{false, false, false, true, false, true, false, false},
+    		{false, false, false, false, false, false, false, false},
+    		{false, false, false, true, false, true, false, false},
+    		{false, false, true, false, false, false, true, false},
+    		{false, true, false, false, false, false, false, true},
+    		{true, false, false, false, false, false, false, false},
+    	};
+    
+    //Positive Test Case
+    Assert.assertArrayEquals(correctCase, bishop.getPossibleMoves());
   }
   @Test
   public void KingPossibleMoves()
   {
-    Board board = new Board(0, 0, 0);
-    King king = new King(board, 3, 4, 1);
-    Pawn pawn1 = new Pawn(board, 4, 4, 0);
-    Pawn pawn2 = new Pawn(board, 2, 4, 1);
-    Pawn pawn3 = new Pawn(board, 5, 2, 0);
-    Pawn pawn4 = new Pawn(board, 5, 6, 0);
-    Pawn pawn5 = new Pawn(board, 1, 2, 1);
-    Pawn pawn6 = new Pawn(board, 1, 6, 1);
-    Pawn pawn7 = new Pawn(board, 4, 2, 0);
-    Pawn pawn8 = new Pawn(board, 2, 6, 1);
-    Assert.assertNotEquals(pawn1,king);
+	    Board board = new Board(-1, 0, 0);
+	    King king  = new King(board, 3, 4, 1);
+	    board.addPiece(king, 3, 4);
+	    
+	    king.updatePossibleMoves();
+	    
+	    //Negative Test Case
+	    Assert.assertNotEquals(blankBoard, king.getPossibleMoves());
+	    
+	    boolean[][] correctCase =
+	    	{
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, true, true, true, false, false},
+	    		{false, false, false, true, false, true, false, false},
+	    		{false, false, false, true, true, true, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    	};
+	    
+	    //Positive Test Case
+	    Assert.assertArrayEquals(correctCase, king.getPossibleMoves());
   }
   @Test
   public void KnightPossibleMoves()
   {
-    Board board = new Board(0, 0, 0);
-    Knight knight = new Knight(board, 3, 4, 1);
-    Pawn pawn1 = new Pawn(board, 5, 3, 1);
-    Pawn pawn2 = new Pawn(board, 5, 5, 0);
-    Pawn pawn3 = new Pawn(board, 1, 3, 1);
-    Pawn pawn4 = new Pawn(board, 1, 5, 0);
-    Pawn pawn5 = new Pawn(board, 2, 2, 1);
-    Pawn pawn6 = new Pawn(board, 4, 2, 0);
-    Pawn pawn7 = new Pawn(board, 2, 6, 1);
-    Pawn pawn8 = new Pawn(board, 4, 6, 0);
-    Assert.assertNotEquals(pawn1, knight);
+	    Board board = new Board(-1, 0, 0);
+	    Knight knight  = new Knight(board, 3, 4, 1);
+	    board.addPiece(knight, 3, 4);
+	    
+	    knight.updatePossibleMoves();
+	    
+	    //Negative Test Case
+	    Assert.assertNotEquals(blankBoard, knight.getPossibleMoves());
+	    
+	    boolean[][] correctCase =
+	    	{
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, true, false, true, false, false},
+	    		{false, false, true, false, false, false, true, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, true, false, false, false, true, false},
+	    		{false, false, false, true, false, true, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    	};
+	    
+	    //Positive Test Case
+	    Assert.assertArrayEquals(correctCase, knight.getPossibleMoves());
   }
   @Test
   public void PawnPossibleMoves()
-  {
-    Board board = new Board(0, 0, 0);
-    Pawn pawn1 = new Pawn(board, 0, 4, 1);
-    Pawn pawn2 = new Pawn(board, 1, 3, 1);
-    Pawn pawn3 = new Pawn(board, 1, 5, 0);
-    Assert.assertNotEquals(pawn1, pawn2);
+  {	
+	    Board board = new Board(-1, 0, 0);
+	    Pawn pawn  = new Pawn(board, 3, 4, 1);
+	    board.addPiece(pawn, 3, 4);
+	    
+	    pawn.updatePossibleMoves();
+	    
+	    //Negative Test Case
+	    Assert.assertNotEquals(blankBoard, pawn.getPossibleMoves());
+	    
+	    boolean[][] correctCase =
+	    	{
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    					//Has double jump because it has not moved yet
+	    		{false, false, true, true, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    		{false, false, false, false, false, false, false, false},
+	    	};
+	    
+	    //Positive Test Case
+	    Assert.assertArrayEquals(correctCase, pawn.getPossibleMoves());
   }
   @Test
   public void QueenPossibleMoves()
-  {
-    Board board = new Board(0, 0, 0);
-    Queen queen = new Queen(board, 3, 4, 1);
-    Pawn pawn1 = new Pawn(board, 0, 7, 1);
-    Pawn pawn2 = new Pawn(board, 6, 7, 0);
-    Pawn pawn3 = new Pawn(board, 0, 1, 1);
-    Pawn pawn4 = new Pawn(board, 7, 0, 0);
-    Pawn pawn5 = new Pawn(board, 0, 4, 1);
-    Pawn pawn6 = new Pawn(board, 7, 4, 0);
-    Pawn pawn7 = new Pawn(board, 0, 0, 1);
-    Pawn pawn8 = new Pawn(board, 0, 7, 0);
-    Assert.assertNotEquals(pawn1, queen);
+  {	
+	    Board board = new Board(-1, 0, 0);
+	    Queen queen  = new Queen(board, 3, 4, 1);
+	    board.addPiece(queen, 3, 4);
+	    
+	    queen.updatePossibleMoves();
+	    
+	    //Negative Test Case
+	    Assert.assertNotEquals(blankBoard, queen.getPossibleMoves());
+	    
+	    boolean[][] correctCase =
+	    	{
+	    		{false, true, false, false, true, false, false, true},
+	    		{false, false, true, false, true, false, true, false},
+	    		{false, false, false, true, true, true, false, false},
+	    		{true, true, true, true, false, true, true, true},
+	    		{false, false, false, true, true, true, false, false},
+	    		{false, false, true, false, true, false, true, false},
+	    		{false, true, false, false, true, false, false, true},
+	    		{true, false, false, false, true, false, false, false},
+	    	};
+	    
+	    //Positive Test Case
+	    Assert.assertArrayEquals(correctCase, queen.getPossibleMoves());
   }
   @Test
   public void RookPossibleMoves()
-  {
-    Board board = new Board(0, 0, 0);
-    Rook rook = new Rook(board, 3, 4, 1);
-    Pawn pawn1 = new Pawn(board, 0, 4, 1);
-    Pawn pawn2 = new Pawn(board, 7, 4, 0);
-    Pawn pawn3 = new Pawn(board, 0, 0, 1);
-    Pawn pawn4 = new Pawn(board, 0, 7, 0);
-    Assert.assertNotEquals(pawn1, rook);
+  {	
+	    Board board = new Board(-1, 0, 0);
+	    Rook rook  = new Rook(board, 3, 4, 1);
+	    board.addPiece(rook, 3, 4);
+	    
+	    rook.updatePossibleMoves();
+	    
+	    //Negative Test Case
+	    Assert.assertNotEquals(blankBoard, rook.getPossibleMoves());
+	    
+	    boolean[][] correctCase =
+	    	{
+	    		{false, false, false, false, true, false, false, false},
+	    		{false, false, false, false, true, false, false, false},
+	    		{false, false, false, false, true, false, false, false},
+	    		{true, true, true, true, false, true, true, true},
+	    		{false, false, false, false, true, false, false, false},
+	    		{false, false, false, false, true, false, false, false},
+	    		{false, false, false, false, true, false, false, false},
+	    		{false, false, false, false, true, false, false, false},
+	    	};
+	    
+	    //Positive Test Case
+	    Assert.assertArrayEquals(correctCase, rook.getPossibleMoves());
   }
 }
